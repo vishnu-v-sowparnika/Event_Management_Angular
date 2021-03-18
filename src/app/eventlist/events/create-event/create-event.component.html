@@ -1,0 +1,192 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createTenantForm="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'Create New Event' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="eventName">
+        {{ "Event Name" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="eventName"
+          id="eventName"
+          minlength="2"
+          maxlength="64"
+          required
+          [(ngModel)]="myevent.description"
+          #eventNameModel="ngModel"
+          #eventNameEl
+        />
+        <abp-validation-summary
+          [control]="eventNameModel"
+          [controlEl]="eventNameEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="venue">
+        {{ "Venue" | localize }}
+      </label>
+      <div class="col-md-9">
+        <input
+          type="text"
+          class="form-control"
+          name="venue"
+          id="venue"
+          maxlength="128"
+          required
+          [(ngModel)]="myevent.venue"
+          #venueModel="ngModel"
+          #venueEl
+        />
+        <abp-validation-summary
+          [control]="venueModel"
+          [controlEl]="venueEl"
+        ></abp-validation-summary>
+      </div>
+    </div>
+
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="eventdate">
+        {{ "Event Date & Time" | localize }}
+      </label>
+      <div class="col-md-6">
+        <input
+          type="date"
+          class="form-control"
+          name="eventdate"
+          id="eventdate"
+          maxlength="128"
+          required
+          [(ngModel)]="eventdate"
+          #eventdateModel="ngModel"
+          #eventdateEl
+        />
+
+        <abp-validation-summary
+          [control]="eventdateModel"
+          [controlEl]="eventdateEl"
+        >
+        </abp-validation-summary>
+      </div>
+
+      <div class="col-md-3">
+        <input
+          type="time"
+          class="form-control"
+          name="eventtime"
+          id="eventtime"
+          maxlength="128"
+          required
+          [(ngModel)]="eventtime"
+          #eventtimeModel="ngModel"
+          #eventtimeEl
+        />
+
+        <abp-validation-summary
+          [control]="eventtimeModel"
+          [controlEl]="eventtimeEl"
+        >
+        </abp-validation-summary>
+      </div>
+    </div>
+
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="stdate">
+        {{ "Registration Start Date & Time" | localize }}
+      </label>
+      <div class="col-md-6">
+        <input
+          type="date"
+          class="form-control"
+          name="stdate"
+          id="stdate"
+          maxlength="128"
+          required
+          [(ngModel)]="stdate"
+          #stdateModel="ngModel"
+          #stdateEl
+        />
+
+        <abp-validation-summary [control]="stdateModel" [controlEl]="stdateEl">
+        </abp-validation-summary>
+      </div>
+
+      <div class="col-md-3">
+        <input
+          type="time"
+          class="form-control"
+          name="sttime"
+          id="sttime"
+          maxlength="128"
+          required
+          [(ngModel)]="sttime"
+          #sttimeModel="ngModel"
+          #sttimeEl
+        />
+
+        <abp-validation-summary [control]="sttimeModel" [controlEl]="sttimeEl">
+        </abp-validation-summary>
+      </div>
+    </div>
+
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="eddate">
+        {{ "Registration End Date & Time" | localize }}
+      </label>
+      <div class="col-md-6">
+        <input
+          type="date"
+          class="form-control"
+          name="eddate"
+          id="eddate"
+          maxlength="128"
+          required
+          [(ngModel)]="eddate"
+          #eddateModel="ngModel"
+          #eddateEl
+        />
+
+        <abp-validation-summary [control]="eddateModel" [controlEl]="eddateEl">
+        </abp-validation-summary>
+      </div>
+
+      <div class="col-md-3">
+        <input
+          type="time"
+          class="form-control"
+          name="edtime"
+          id="edtime"
+          maxlength="128"
+          required
+          [(ngModel)]="edtime"
+          #edtimeModel="ngModel"
+          #edtimeEl
+        />
+
+        <abp-validation-summary [control]="edtimeModel" [controlEl]="edtimeEl">
+        </abp-validation-summary>
+      </div>
+    </div>
+
+    <div class="form-group row mb-0">
+      <label class="col-md-3 col-form-label">
+        {{ "IsActive" | localize }}
+      </label>
+    </div>
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createTenantForm.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>
