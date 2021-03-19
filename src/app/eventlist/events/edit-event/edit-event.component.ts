@@ -65,6 +65,13 @@ export class EditEventComponent extends AppComponentBase implements OnInit {
 
     //return console.log("my event in edit", this.myevent);
 
+    var ed = moment(this.eventdate + " " + this.eventtime).utcOffset("+05:30");
+    var sd = moment(this.stdate + " " + this.sttime).utcOffset("+05:30");
+    var end = moment(this.eddate + " " + this.edtime).utcOffset("+05:30");
+    this.myevent.eventdate = ed;
+    this.myevent.reg_start_date = sd;
+    this.myevent.reg_end_date = end;
+
     this._eventService
       .updateEvent(this.myevent)
       .pipe(

@@ -135,6 +135,21 @@ export class EventsComponent
     this.isOrganiser = this._permissionChecker.isGranted("Pages.Organiser");
   }
 
+  deleteregistration(myevent: EventListDto) {
+    let dto: RegistrationInputDto = new RegistrationInputDto();
+    dto.eventId = myevent.id;
+    this._registrationService
+      .unregisterEvent(dto)
+      .pipe(
+        finalize(() => {
+          abp.notify.success(this.l("SuccessfullyUpdated"));
+          this.getRegisteredEvents();
+          this.refresh();
+        })
+      )
+      .subscribe(() => {});
+  }
+
   getRegisteredEvents() {
     this._registrationService
       .getRegisteredEvents(undefined, undefined, undefined, 0, 10)
